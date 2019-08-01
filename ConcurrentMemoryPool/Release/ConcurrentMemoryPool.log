@@ -1,0 +1,23 @@
+﻿生成启动时间为 2019/7/31 17:45:39。
+     1>项目“E:\ConcurrentMemoryPool\ConcurrentMemoryPool\ConcurrentMemoryPool.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         F:\新建文件夹\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Benchmark.cpp CentralCache.cpp PageCache.cpp ThreadCache.cpp UnitTest.cpp
+         Benchmark.cpp
+         CentralCache.cpp
+         PageCache.cpp
+         ThreadCache.cpp
+         UnitTest.cpp
+       Link:
+         F:\新建文件夹\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\ConcurrentMemoryPool\ConcurrentMemoryPool\Release\ConcurrentMemoryPool.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\ConcurrentMemoryPool\ConcurrentMemoryPool\Release\ConcurrentMemoryPool.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\ConcurrentMemoryPool\ConcurrentMemoryPool\Release\ConcurrentMemoryPool.lib" /MACHINE:X86 /SAFESEH Release\Benchmark.obj
+         Release\CentralCache.obj
+         Release\PageCache.obj
+         Release\ThreadCache.obj
+         Release\UnitTest.obj
+         正在生成代码
+         已完成代码的生成
+         ConcurrentMemoryPool.vcxproj -> E:\ConcurrentMemoryPool\ConcurrentMemoryPool\Release\ConcurrentMemoryPool.exe
+     1>已完成生成项目“E:\ConcurrentMemoryPool\ConcurrentMemoryPool\ConcurrentMemoryPool.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:05.56
