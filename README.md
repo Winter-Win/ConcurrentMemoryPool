@@ -468,5 +468,3 @@ private:
 **几个内存池库的对比：** https://blog.csdn.net/junlon2006/article/details/77854898
 **tcmalloc源码学习：** https://www.cnblogs.com/persistentsnail/p/3442185.html
 **TCMALLOC 源码阅读：** https://blog.csdn.net/math715/article/details/80654167
-##### **7. 项目源码**
-**https://github.com/Winter-Win/package/tree/master/ConcurrentMemoryPool**
