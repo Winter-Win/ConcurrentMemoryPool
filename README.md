@@ -8,7 +8,9 @@
 **1.1 池化技术**
 
 - 池是在计算技术中经常使用的一种设计模式，其内涵在于：将程序中需要经常使用的核心资源先申请出来，放到一个池内，有程序自管理，这样可以提高资源的利用率，也可以保证本程序占有的资源数量，经常使用的池化技术包括内存池，线程池，和连接池等，其中尤以内存池和线程池使用最多。
-  **1.2 内存池**
+
+
+**1.2 内存池**
 - 内存池（Memory Pool）是一种动态内存分配与管理技术，通常情况下，程序员习惯直接使用new，delete，malloc,free等API申请和释放内存，这样导致的后果就是：当程序运行的时间很长的时候，由于所申请的内存块的大小不定，频繁使用时会造成大量的内存碎片从而降低程序和操作系统的性能。
 - 内存池则是在真正使用内存之前，先申请分配一大块内存（内存池）留作备用。当程序员申请内存时，从池中取出一块动态分配，当程序员释放时，将释放的内存放回到池内，再次申请，就可以从池里取出来使用，并尽量与周边的空闲内存块合并。若内存池不够时，则自动扩大内存池，从操作系统中申请更大的内存池。
 ##### **2. 为什么需要内存池**
@@ -106,7 +108,8 @@ _declspec (thread) static ThreadCache* tlslist = nullptr;
 **释放内存：**
 - 当释放内存小于64k时将内存释放回Thread Cache，计算size在自由链表中的位置，将对象Push到FreeList[i].
 - 当链表的长度过长，也就是超过一次向中心缓存分配的内存块数目时则回收一部分内存对象到Central Cache。
-  **4.3 对齐大小的设计（对齐规则）**
+
+**4.3 对齐大小的设计（对齐规则）**
 ```
 //专门用来计算大小位置的类
 class SizeClass
@@ -203,6 +206,7 @@ public:
 	}
 };
 ```
+
 **4.4 设计Thread Cache**
 - Central Cache本质是由一个哈希映射的Span对象自由双向链表构成
 - 为了保证全局只有唯一的Central Cache，这个类被可以设计成了单例模式
@@ -253,6 +257,7 @@ private:
 	static CentralCache _inst;
 };
 ```
+
 **申请内存：**
 - 当Thread Cache中没有内存时，就会批量向Central Cache申请一些内存对象，Central Cache也有一个哈希映射的freelist，freelist中挂着span，从span中取出对象给Thread Cache，这个过程是需要加锁的。
 - Central Cache中没有非空的span时，则将空的span链在一起，向Page Cache申请一个span对象，span对象中是一些以页为单位的内存，切成需要的内存大小，并链接起来，挂到span中。
@@ -280,6 +285,7 @@ struct Span
 	size_t _usecount = 0;//对象使用计数,
 };
 ```
+
 **特别关心：关于spanlist，设计为一个双向链表，插入删除效率较高。**
 ```
 //和上面的Freelist一样，各个接口自己实现，双向带头循环的Span链表
@@ -394,6 +400,7 @@ public:
 	}
 };
 ```
+
 **特别关心：怎么才能将Thread Cache中的内存对象还给它原来的span呢？
 答：可以在Page Cache中维护一个页号到span的映射，当Span Cache给Central Cache分配一个span时，将这个映射更新到unordered_map中去，在Thread Cache还给Central Cache时，可以查这个unordered_map找到对应的span。**
 **4.5 设计Page Cache**
